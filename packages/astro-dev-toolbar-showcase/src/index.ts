@@ -2,7 +2,7 @@ import type { AstroIntegration } from "astro";
 
 export default function myAstroIntegration(): AstroIntegration {
 	return {
-		name: "my-astro-integration",
+		name: "astro-dev-toolbar-showcase",
 		hooks: {
 			"astro:config:setup": ({ logger }) => {
 				logger.info("astro:config:setup");
