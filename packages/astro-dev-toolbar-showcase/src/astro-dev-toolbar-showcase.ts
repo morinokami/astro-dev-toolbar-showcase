@@ -9,6 +9,7 @@ import {
 	BUTTON_SIZES,
 	BUTTON_STYLES,
 	CARD_STYLES,
+	DEFINED_ICONS,
 	RADIO_CHECKBOX_STYLES,
 	TOGGLE_STYLES,
 } from "./const";
@@ -177,8 +178,8 @@ function appendToggles(windowElement: DevToolbarWindow) {
 		toggle.toggleStyle = style;
 		const toggleStatus = document.createElement("span");
 		toggleStatus.textContent = `The ${style} toggle is disabled`;
-		toggle.input.addEventListener("change", (evt) => {
-			const target = evt.currentTarget as HTMLInputElement;
+		toggle.input.addEventListener("change", (event) => {
+			const target = event.currentTarget as HTMLInputElement;
 			toggleStatus.textContent = `The ${style} toggle is now ${target.checked ? "enabled" : "disabled"}!`;
 		});
 		row.appendChild(toggle);
@@ -222,28 +223,32 @@ function appendRadioCheckboxes(windowElement: DevToolbarWindow) {
 function appendHighlights(windowElement: DevToolbarWindow) {
 	// biome-ignore lint/correctness/noUnusedVariables:
 	const styles = ["purple", "gray", "red", "green", "yellow", "blue"] as const;
-
-	const header = document.createElement("h2");
-	const headerTitle = document.createElement("code");
-	headerTitle.textContent = "astro-dev-toolbar-highlight";
-	header.appendChild(headerTitle);
-	windowElement.appendChild(header);
+	appendHeader(windowElement, "astro-dev-toolbar-highlight");
 }
 
 function appendTooltips(windowElement: DevToolbarWindow) {
-	const header = document.createElement("h2");
-	const headerTitle = document.createElement("code");
-	headerTitle.textContent = "astro-dev-toolbar-tooltip";
-	header.appendChild(headerTitle);
-	windowElement.appendChild(header);
+	appendHeader(windowElement, "astro-dev-toolbar-tooltip");
 }
 
 function appendIcons(windowElement: DevToolbarWindow) {
-	const header = document.createElement("h2");
-	const headerTitle = document.createElement("code");
-	headerTitle.textContent = "astro-dev-toolbar-icon";
-	header.appendChild(headerTitle);
-	windowElement.appendChild(header);
+	appendHeader(windowElement, "astro-dev-toolbar-icon");
+
+	const section = createSection();
+	const paragraph = document.createElement("p");
+	paragraph.textContent = `Currrently, there are ${DEFINED_ICONS.length} built-in icons.`;
+	section.appendChild(paragraph);
+	const row = createRow();
+	row.style.flexWrap = "wrap";
+	for (const icon of DEFINED_ICONS) {
+		const iconElement = document.createElement("astro-dev-toolbar-icon");
+		iconElement.icon = icon;
+		iconElement.title = icon;
+		iconElement.style.width = "36px";
+		row.appendChild(iconElement);
+	}
+	section.appendChild(row);
+
+	windowElement.appendChild(section);
 }
 
 function appendHeader(windowElement: DevToolbarWindow, title: string) {
