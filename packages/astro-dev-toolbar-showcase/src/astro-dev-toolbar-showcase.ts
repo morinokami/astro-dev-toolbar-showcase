@@ -208,6 +208,8 @@ function appendCards(windowElement: DevToolbarWindow) {
 }
 
 function appendToggles(windowElement: DevToolbarWindow) {
+	const styles = ["purple", "gray", "red", "green", "yellow", "blue"] as const;
+
 	const header = document.createElement("h2");
 	const headerTitle = document.createElement("code");
 	headerTitle.textContent = "astro-dev-toolbar-toggle";
@@ -219,23 +221,26 @@ function appendToggles(windowElement: DevToolbarWindow) {
 	section.style.flexDirection = "column";
 	section.style.gap = "8px";
 
-	const toggleWrapper = document.createElement("div");
-	toggleWrapper.style.display = "flex";
-	toggleWrapper.style.alignItems = "center";
-	toggleWrapper.style.gap = "10px";
-
-	const toggle = document.createElement("astro-dev-toolbar-toggle");
-	const toggleStatus = document.createElement("span");
-	toggleStatus.textContent = "The toggle is now disabled!";
-
-	toggle.input.addEventListener("change", (evt) => {
-		const target = evt.currentTarget as HTMLInputElement;
-		toggleStatus.textContent = `The toggle is now ${target.checked ? "enabled" : "disabled"}!`;
-	});
-
-	toggleWrapper.appendChild(toggle);
-	toggleWrapper.appendChild(toggleStatus);
-	section.appendChild(toggleWrapper);
+	const paragraph = document.createElement("p");
+	paragraph.textContent = "The style (color) of the toggle can be customized.";
+	section.appendChild(paragraph);
+	for (const style of styles) {
+		const toggleWrapper = document.createElement("div");
+		toggleWrapper.style.display = "flex";
+		toggleWrapper.style.alignItems = "center";
+		toggleWrapper.style.gap = "10px";
+		const toggle = document.createElement("astro-dev-toolbar-toggle");
+		toggle.toggleStyle = style;
+		const toggleStatus = document.createElement("span");
+		toggleStatus.textContent = `The ${style} toggle is now disabled!`;
+		toggle.input.addEventListener("change", (evt) => {
+			const target = evt.currentTarget as HTMLInputElement;
+			toggleStatus.textContent = `The ${style} toggle is now ${target.checked ? "enabled" : "disabled"}!`;
+		});
+		toggleWrapper.appendChild(toggle);
+		toggleWrapper.appendChild(toggleStatus);
+		section.appendChild(toggleWrapper);
+	}
 
 	windowElement.appendChild(section);
 }
