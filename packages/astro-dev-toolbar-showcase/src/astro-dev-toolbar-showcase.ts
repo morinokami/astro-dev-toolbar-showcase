@@ -38,7 +38,7 @@ export default defineToolbarApp({
       }
 
       p {
-        margin: 0px;
+        margin: 0.5em 0;
       }
     `;
 		windowElement.appendChild(style);
@@ -87,6 +87,7 @@ function appendButtons(windowElement: DevToolbarWindow) {
 		"yellow",
 		"blue",
 	] as const;
+	const borderRadiuses = ["normal", "rounded"] as const;
 
 	const header = document.createElement("h2");
 	const headerTitle = document.createElement("code");
@@ -98,6 +99,11 @@ function appendButtons(windowElement: DevToolbarWindow) {
 	section.style.display = "flex";
 	section.style.flexDirection = "column";
 	section.style.gap = "8px";
+
+	const paragraph1 = document.createElement("p");
+	paragraph1.textContent =
+		"The size and style of the button can be customized.";
+	section.appendChild(paragraph1);
 	for (const size of sizes) {
 		const row = document.createElement("div");
 		row.style.display = "flex";
@@ -106,7 +112,6 @@ function appendButtons(windowElement: DevToolbarWindow) {
 		row.style.flexWrap = "wrap";
 		for (const style of styles) {
 			const button = document.createElement("astro-dev-toolbar-button");
-			button.style.display = "inline-block";
 			button.textContent = `${size} ${style}`;
 			button.size = size;
 			button.buttonStyle = style;
@@ -114,15 +119,64 @@ function appendButtons(windowElement: DevToolbarWindow) {
 		}
 		section.appendChild(row);
 	}
+
+	const paragraph2 = document.createElement("p");
+	paragraph2.textContent = "The border radius can also be customized.";
+	section.appendChild(paragraph2);
+	const row = document.createElement("div");
+	row.style.display = "flex";
+	row.style.alignItems = "center";
+	row.style.gap = "8px";
+	row.style.flexWrap = "wrap";
+	for (const borderRadius of borderRadiuses) {
+		const button = document.createElement("astro-dev-toolbar-button");
+		button.textContent = `${borderRadius}`;
+		button.size = "medium";
+		button.buttonStyle = "purple";
+		button.buttonBorderRadius = borderRadius;
+		row.appendChild(button);
+	}
+	section.appendChild(row);
+
 	windowElement.appendChild(section);
 }
 
 function appendBadges(windowElement: DevToolbarWindow) {
+	const sizes = ["small", "large"] as const;
+	const styles = ["purple", "gray", "red", "green", "yellow", "blue"] as const;
+
 	const header = document.createElement("h2");
 	const headerTitle = document.createElement("code");
 	headerTitle.textContent = "astro-dev-toolbar-badge";
 	header.appendChild(headerTitle);
 	windowElement.appendChild(header);
+
+	const section = document.createElement("section");
+	section.style.display = "flex";
+	section.style.flexDirection = "column";
+	section.style.gap = "8px";
+
+	const paragraph = document.createElement("p");
+	paragraph.textContent =
+		"The size and style (color) of the badge can be customized.";
+	section.appendChild(paragraph);
+	for (const size of sizes) {
+		const row = document.createElement("div");
+		row.style.display = "flex";
+		row.style.alignItems = "center";
+		row.style.gap = "8px";
+		row.style.flexWrap = "wrap";
+		for (const style of styles) {
+			const badge = document.createElement("astro-dev-toolbar-badge");
+			badge.textContent = `${size} ${style}`;
+			badge.size = size;
+			badge.badgeStyle = style;
+			row.appendChild(badge);
+		}
+		section.appendChild(row);
+	}
+
+	windowElement.appendChild(section);
 }
 
 function appendCards(windowElement: DevToolbarWindow) {

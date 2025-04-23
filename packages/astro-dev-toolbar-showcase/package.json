@@ -1,6 +1,6 @@
 {
 	"name": "astro-dev-toolbar-showcase",
-	"description": "TODO:",
+	"description": "Astro Dev Toolbar App showcasing built-in components",
 	"version": "0.0.1",
 	"type": "module",
 	"author": "Shinya Fujino <shf0811@gmail.com> (https://github.com/morinokami)",
