@@ -253,9 +253,14 @@ function appendIcons(windowElement: DevToolbarWindow) {
 
 function appendHeader(windowElement: DevToolbarWindow, title: string) {
 	const header = document.createElement("h2");
+	const a = document.createElement("a");
+	a.href = `https://docs.astro.build/en/reference/dev-toolbar-app-reference/#${title}`;
+	a.target = "_blank";
+	a.style.textDecoration = "none";
 	const headerTitle = document.createElement("code");
 	headerTitle.textContent = title;
-	header.appendChild(headerTitle);
+	a.appendChild(headerTitle);
+	header.appendChild(a);
 	windowElement.appendChild(header);
 }
 
