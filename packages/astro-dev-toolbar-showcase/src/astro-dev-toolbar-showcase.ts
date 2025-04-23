@@ -212,7 +212,7 @@ function appendRadioCheckboxes(windowElement: DevToolbarWindow) {
 		radio.radioStyle = style;
 		radio.setAttribute("checked", "true");
 		const radioStatus = document.createElement("span");
-		radioStatus.textContent = style;
+		radioStatus.textContent = `${style} checked`;
 		row.appendChild(radio);
 		row.appendChild(radioStatus);
 		section.appendChild(row);
@@ -269,6 +269,31 @@ function appendHighlights(windowElement: DevToolbarWindow) {
 
 function appendTooltips(windowElement: DevToolbarWindow) {
 	appendHeader(windowElement, "astro-dev-toolbar-tooltip");
+
+	const section = createSection();
+	const paragraph = document.createElement("p");
+	paragraph.textContent = "Hover me to see the tooltip.";
+	paragraph.style.marginBottom = "0px";
+	section.appendChild(paragraph);
+	const tooltip = document.createElement("astro-dev-toolbar-tooltip");
+	tooltip.sections = [
+		{
+			title: "My title",
+			inlineTitle: "My inline title",
+			icon: "astro:logo",
+			content: "My content",
+		},
+	];
+	tooltip.style.marginTop = "35px";
+	paragraph.addEventListener("mouseover", () => {
+		tooltip.dataset.show = "true";
+	});
+	paragraph.addEventListener("mouseout", () => {
+		tooltip.dataset.show = "false";
+	});
+	section.appendChild(tooltip);
+
+	windowElement.appendChild(section);
 }
 
 function appendIcons(windowElement: DevToolbarWindow) {
@@ -276,7 +301,7 @@ function appendIcons(windowElement: DevToolbarWindow) {
 
 	const section = createSection();
 	const paragraph = document.createElement("p");
-	paragraph.textContent = `Currrently, there are ${DEFINED_ICONS.length} built-in icons.`;
+	paragraph.textContent = `${DEFINED_ICONS.length} icons are available.`;
 	section.appendChild(paragraph);
 	const row = createRow();
 	row.style.flexWrap = "wrap";
