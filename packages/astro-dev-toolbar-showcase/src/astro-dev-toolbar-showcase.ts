@@ -180,11 +180,31 @@ function appendBadges(windowElement: DevToolbarWindow) {
 }
 
 function appendCards(windowElement: DevToolbarWindow) {
+	const styles = ["purple", "gray", "red", "green", "yellow", "blue"] as const;
+
 	const header = document.createElement("h2");
 	const headerTitle = document.createElement("code");
 	headerTitle.textContent = "astro-dev-toolbar-card";
 	header.appendChild(headerTitle);
 	windowElement.appendChild(header);
+
+	const section = document.createElement("section");
+	section.style.display = "flex";
+	section.style.flexDirection = "column";
+	section.style.gap = "8px";
+
+	const paragraph = document.createElement("p");
+	paragraph.textContent = "The style (color) of the card can be customized.";
+	section.appendChild(paragraph);
+	for (const style of styles) {
+		const card = document.createElement("astro-dev-toolbar-card");
+		card.textContent = `${style}`;
+		card.cardStyle = style;
+		card.link = "https://astro.build";
+		section.appendChild(card);
+	}
+
+	windowElement.appendChild(section);
 }
 
 function appendToggles(windowElement: DevToolbarWindow) {
