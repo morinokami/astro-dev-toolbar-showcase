@@ -14,9 +14,10 @@ import {
 	RADIO_CHECKBOX_STYLES,
 	TOGGLE_STYLES,
 } from "./const";
+import { closeOnOutsideClick } from "./utils";
 
 export default defineToolbarApp({
-	init(canvas) {
+	init(canvas, eventTarget) {
 		const windowElement = document.createElement("astro-dev-toolbar-window");
 		windowElement.style.overflow = "auto";
 
@@ -77,6 +78,8 @@ export default defineToolbarApp({
 		}
 
 		canvas.appendChild(windowElement);
+
+		closeOnOutsideClick(eventTarget);
 	},
 }) satisfies DevToolbarApp;
 
@@ -178,10 +181,10 @@ function appendToggles(windowElement: DevToolbarWindow) {
 		const toggle = document.createElement("astro-dev-toolbar-toggle");
 		toggle.toggleStyle = style;
 		const toggleStatus = document.createElement("span");
-		toggleStatus.textContent = `The ${style} toggle is disabled`;
+		toggleStatus.textContent = `${style} toggle is off`;
 		toggle.input.addEventListener("change", (event) => {
 			const target = event.currentTarget as HTMLInputElement;
-			toggleStatus.textContent = `The ${style} toggle is now ${target.checked ? "enabled" : "disabled"}!`;
+			toggleStatus.textContent = `${style} toggle is ${target.checked ? "on" : "off"}`;
 		});
 		row.appendChild(toggle);
 		row.appendChild(toggleStatus);
