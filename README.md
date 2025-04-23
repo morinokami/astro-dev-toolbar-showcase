@@ -1,1 +1,1 @@
-packages/astro-integration/README.md
+packages/astro-dev-toolbar-showcase/README.md
