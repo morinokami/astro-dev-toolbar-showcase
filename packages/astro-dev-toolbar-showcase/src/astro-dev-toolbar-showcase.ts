@@ -232,7 +232,7 @@ function appendToggles(windowElement: DevToolbarWindow) {
 		const toggle = document.createElement("astro-dev-toolbar-toggle");
 		toggle.toggleStyle = style;
 		const toggleStatus = document.createElement("span");
-		toggleStatus.textContent = `The ${style} toggle is now disabled!`;
+		toggleStatus.textContent = `The ${style} toggle is disabled`;
 		toggle.input.addEventListener("change", (evt) => {
 			const target = evt.currentTarget as HTMLInputElement;
 			toggleStatus.textContent = `The ${style} toggle is now ${target.checked ? "enabled" : "disabled"}!`;
@@ -246,11 +246,42 @@ function appendToggles(windowElement: DevToolbarWindow) {
 }
 
 function appendRadioCheckboxes(windowElement: DevToolbarWindow) {
+	const styles = ["purple", "gray", "red", "green", "yellow", "blue"] as const;
+
 	const header = document.createElement("h2");
 	const headerTitle = document.createElement("code");
 	headerTitle.textContent = "astro-dev-toolbar-radio-checkbox";
 	header.appendChild(headerTitle);
 	windowElement.appendChild(header);
+
+	const section = document.createElement("section");
+	section.style.display = "flex";
+	section.style.flexDirection = "column";
+	section.style.gap = "8px";
+
+	const paragraph = document.createElement("p");
+	paragraph.textContent = "The style (color) of the radio can be customized.";
+	section.appendChild(paragraph);
+	for (const style of styles) {
+		const radioWrapper = document.createElement("div");
+		radioWrapper.style.display = "flex";
+		radioWrapper.style.alignItems = "center";
+		radioWrapper.style.gap = "10px";
+		const radio = document.createElement("astro-dev-toolbar-radio-checkbox");
+		radio.radioStyle = style;
+		const radioStatus = document.createElement("span");
+		radioStatus.textContent = `The ${style} radio is disabled`;
+		// TODO: make the radio toggle when clicked
+		radio.input.addEventListener("change", (evt) => {
+			const target = evt.currentTarget as HTMLInputElement;
+			radioStatus.textContent = `The ${style} radio is now ${target.checked ? "enabled" : "disabled"}!`;
+		});
+		radioWrapper.appendChild(radio);
+		radioWrapper.appendChild(radioStatus);
+		section.appendChild(radioWrapper);
+	}
+
+	windowElement.appendChild(section);
 }
 
 function appendHighlights(windowElement: DevToolbarWindow) {
