@@ -262,6 +262,17 @@ function appendRadioCheckboxes(windowElement: DevToolbarWindow) {
 	const paragraph = document.createElement("p");
 	paragraph.textContent = "The style (color) of the radio can be customized.";
 	section.appendChild(paragraph);
+	const radioWrapper = document.createElement("div");
+	radioWrapper.style.display = "flex";
+	radioWrapper.style.alignItems = "center";
+	radioWrapper.style.gap = "10px";
+	const radio = document.createElement("astro-dev-toolbar-radio-checkbox");
+	radio.setAttribute("disabled", "true");
+	const radioStatus = document.createElement("span");
+	radioStatus.textContent = "disabled";
+	radioWrapper.appendChild(radio);
+	radioWrapper.appendChild(radioStatus);
+	section.appendChild(radioWrapper);
 	for (const style of styles) {
 		const radioWrapper = document.createElement("div");
 		radioWrapper.style.display = "flex";
@@ -269,13 +280,9 @@ function appendRadioCheckboxes(windowElement: DevToolbarWindow) {
 		radioWrapper.style.gap = "10px";
 		const radio = document.createElement("astro-dev-toolbar-radio-checkbox");
 		radio.radioStyle = style;
+		radio.setAttribute("checked", "true");
 		const radioStatus = document.createElement("span");
-		radioStatus.textContent = `The ${style} radio is disabled`;
-		// TODO: make the radio toggle when clicked
-		radio.input.addEventListener("change", (evt) => {
-			const target = evt.currentTarget as HTMLInputElement;
-			radioStatus.textContent = `The ${style} radio is now ${target.checked ? "enabled" : "disabled"}!`;
-		});
+		radioStatus.textContent = style;
 		radioWrapper.appendChild(radio);
 		radioWrapper.appendChild(radioStatus);
 		section.appendChild(radioWrapper);
@@ -285,6 +292,9 @@ function appendRadioCheckboxes(windowElement: DevToolbarWindow) {
 }
 
 function appendHighlights(windowElement: DevToolbarWindow) {
+	// biome-ignore lint/correctness/noUnusedVariables:
+	const styles = ["purple", "gray", "red", "green", "yellow", "blue"] as const;
+
 	const header = document.createElement("h2");
 	const headerTitle = document.createElement("code");
 	headerTitle.textContent = "astro-dev-toolbar-highlight";
