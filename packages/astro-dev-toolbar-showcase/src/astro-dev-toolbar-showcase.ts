@@ -10,6 +10,7 @@ import {
 	BUTTON_STYLES,
 	CARD_STYLES,
 	DEFINED_ICONS,
+	HIGHLIGHT_STYLES,
 	RADIO_CHECKBOX_STYLES,
 	TOGGLE_STYLES,
 } from "./const";
@@ -221,9 +222,49 @@ function appendRadioCheckboxes(windowElement: DevToolbarWindow) {
 }
 
 function appendHighlights(windowElement: DevToolbarWindow) {
-	// biome-ignore lint/correctness/noUnusedVariables:
-	const styles = ["purple", "gray", "red", "green", "yellow", "blue"] as const;
 	appendHeader(windowElement, "astro-dev-toolbar-highlight");
+
+	const section = createSection();
+	const paragraph1 = document.createElement("p");
+	paragraph1.textContent =
+		"The style (color) of the highlight can be customized.";
+	section.appendChild(paragraph1);
+	for (const style of HIGHLIGHT_STYLES) {
+		const row = createRow();
+		row.style.position = "relative";
+		const paragraph = document.createElement("p");
+		paragraph.textContent = `This is a paragraph with a ${style} highlight`;
+		row.appendChild(paragraph);
+		const highlight = document.createElement("astro-dev-toolbar-highlight");
+		highlight.highlightStyle = style;
+		highlight.style.left = "0";
+		highlight.style.top = "0";
+		highlight.style.width = "100%";
+		highlight.style.height = "100%";
+		row.appendChild(highlight);
+		section.appendChild(row);
+	}
+
+	const paragraph2 = document.createElement("p");
+	paragraph2.textContent =
+		"An icon can be added to the top right corner of the highlight.";
+	section.appendChild(paragraph2);
+	const row = createRow();
+	row.style.position = "relative";
+	const paragraph3 = document.createElement("p");
+	paragraph3.textContent = "This is a paragraph with a highlight and an icon";
+	row.appendChild(paragraph3);
+	const highlight = document.createElement("astro-dev-toolbar-highlight");
+	highlight.highlightStyle = "purple";
+	highlight.style.left = "0";
+	highlight.style.top = "0";
+	highlight.style.width = "100%";
+	highlight.style.height = "100%";
+	highlight.icon = "astro:logo";
+	row.appendChild(highlight);
+	section.appendChild(row);
+
+	windowElement.appendChild(section);
 }
 
 function appendTooltips(windowElement: DevToolbarWindow) {

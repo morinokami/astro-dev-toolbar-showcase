@@ -48,6 +48,15 @@ export const RADIO_CHECKBOX_STYLES = [
 	"blue",
 ] as const;
 
+export const HIGHLIGHT_STYLES = [
+	"purple",
+	"gray",
+	"red",
+	"green",
+	"yellow",
+	"blue",
+] as const;
+
 export const DEFINED_ICONS = [
 	"astro:logo",
 	"warning",
