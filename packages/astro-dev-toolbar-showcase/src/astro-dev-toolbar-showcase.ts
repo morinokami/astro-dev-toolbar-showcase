@@ -213,6 +213,31 @@ function appendToggles(windowElement: DevToolbarWindow) {
 	headerTitle.textContent = "astro-dev-toolbar-toggle";
 	header.appendChild(headerTitle);
 	windowElement.appendChild(header);
+
+	const section = document.createElement("section");
+	section.style.display = "flex";
+	section.style.flexDirection = "column";
+	section.style.gap = "8px";
+
+	const toggleWrapper = document.createElement("div");
+	toggleWrapper.style.display = "flex";
+	toggleWrapper.style.alignItems = "center";
+	toggleWrapper.style.gap = "10px";
+
+	const toggle = document.createElement("astro-dev-toolbar-toggle");
+	const toggleStatus = document.createElement("span");
+	toggleStatus.textContent = "The toggle is now disabled!";
+
+	toggle.input.addEventListener("change", (evt) => {
+		const target = evt.currentTarget as HTMLInputElement;
+		toggleStatus.textContent = `The toggle is now ${target.checked ? "enabled" : "disabled"}!`;
+	});
+
+	toggleWrapper.appendChild(toggle);
+	toggleWrapper.appendChild(toggleStatus);
+	section.appendChild(toggleWrapper);
+
+	windowElement.appendChild(section);
 }
 
 function appendRadioCheckboxes(windowElement: DevToolbarWindow) {
