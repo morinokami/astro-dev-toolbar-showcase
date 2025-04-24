@@ -1,4 +1,4 @@
-# astro-dev-toolbar-showcase
+# Astro Dev Toolbar Showcase
 
 <p align="center">
   <img src="./.github/assets/screenshot.png" alt="Screenshot" width="687" />
