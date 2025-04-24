@@ -1,6 +1,8 @@
 # astro-dev-toolbar-showcase
 
-<img src="./.github/assets/screenshot.png" alt="Screenshot" width="1374" />
+<div style="display: flex; justify-content: center;">
+  <img src="./.github/assets/screenshot.png" alt="Screenshot" width="687" />
+</div>
 
 [Astro Dev Toolbar App](https://docs.astro.build/en/reference/dev-toolbar-app-reference/) showcasing the following built-in components:
 
