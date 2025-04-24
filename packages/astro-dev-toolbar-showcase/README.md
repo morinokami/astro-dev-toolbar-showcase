@@ -1,6 +1,6 @@
 # astro-dev-toolbar-showcase
 
-![Screenshot](./.github/assets/screenshot.png)
+<img src="./.github/assets/screenshot.png" alt="Screenshot" width="1374" />
 
 [Astro Dev Toolbar App](https://docs.astro.build/en/reference/dev-toolbar-app-reference/) showcasing the following built-in components:
 
@@ -17,4 +17,24 @@
 
 ```sh
 npx astro add astro-dev-toolbar-showcase
+```
+
+### Manual Installation
+
+First, install the `astro-dev-toolbar-showcase` package:
+
+```sh
+npm install -D astro-dev-toolbar-showcase
+```
+
+Then, add the `astro-dev-toolbar-showcase` integration to your Astro config:
+
+```ts
+import { defineConfig } from "astro/config";
+
+import showcase from "astro-dev-toolbar-showcase";
+
+export default defineConfig({
+  integrations: [showcase()],
+});
 ```
