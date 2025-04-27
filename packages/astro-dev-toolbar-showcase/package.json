@@ -12,20 +12,20 @@
 	},
 	"keywords": ["astro", "withastro", "astro-component", "astro-integration"],
 	"exports": {
-		".": "./dist/index.mjs"
+		".": "./dist/index.js"
 	},
-	"main": "./dist/index.mjs",
-	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.mts",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"files": ["dist"],
 	"scripts": {
-		"build": "unbuild",
+		"build": "tsdown",
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
 		"astro": "5.7.4",
-		"typescript": "5.8.3",
-		"unbuild": "3.5.0"
+		"tsdown": "0.9.8",
+		"typescript": "5.8.3"
 	},
 	"peerDependencies": {
 		"astro": ">=5.0.0"
