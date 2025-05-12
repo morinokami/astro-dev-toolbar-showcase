@@ -23,7 +23,7 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
-		"astro": "5.7.10",
+		"astro": "5.7.12",
 		"tsdown": "0.10.2",
 		"typescript": "5.8.3"
 	},
