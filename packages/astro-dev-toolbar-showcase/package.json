@@ -20,9 +20,10 @@
 	"files": ["dist"],
 	"scripts": {
 		"build": "tsdown",
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsgo --noEmit"
 	},
 	"devDependencies": {
+		"@typescript/native-preview": "7.0.0-dev.20250522.2",
 		"astro": "5.7.10",
 		"tsdown": "0.10.2",
 		"typescript": "5.8.3"
