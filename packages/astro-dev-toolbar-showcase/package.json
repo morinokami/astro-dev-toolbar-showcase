@@ -24,7 +24,7 @@
 	},
 	"devDependencies": {
 		"@typescript/native-preview": "7.0.0-dev.20250522.2",
-		"astro": "5.8.0",
+		"astro": "5.9.1",
 		"tsdown": "0.12.3",
 		"typescript": "5.8.3"
 	},
