@@ -26,7 +26,7 @@
 		"@typescript/native-preview": "7.0.0-dev.20250522.2",
 		"astro": "5.8.0",
 		"tsdown": "0.12.3",
-		"typescript": "5.8.3"
+		"typescript": "5.9.3"
 	},
 	"peerDependencies": {
 		"astro": ">=5.0.0"
