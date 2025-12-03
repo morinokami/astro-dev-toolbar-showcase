@@ -1,7 +1,7 @@
 # Astro Dev Toolbar Showcase
 
 <p align="center">
-  <img src="./.github/assets/screenshot.png" alt="Screenshot" width="687" />
+  <img src="https://github.com/morinokami/astro-dev-toolbar-showcase/blob/main/.github/assets/screenshot.png?raw=true" alt="Screenshot" width="687" />
 </p>
 
 [Astro Dev Toolbar App](https://docs.astro.build/en/reference/dev-toolbar-app-reference/) showcasing the following built-in components:
