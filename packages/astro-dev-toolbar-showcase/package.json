@@ -1,7 +1,7 @@
 {
 	"name": "astro-dev-toolbar-showcase",
 	"description": "Astro Dev Toolbar App showcasing the built-in components listed in the docs",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"type": "module",
 	"author": "Shinya Fujino <shf0811@gmail.com> (https://github.com/morinokami)",
 	"license": "MIT",
@@ -12,11 +12,11 @@
 	},
 	"keywords": ["astro", "withastro", "astro-component", "astro-integration"],
 	"exports": {
-		".": "./dist/index.js"
+		".": "./dist/index.mjs"
 	},
-	"main": "./dist/index.js",
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+	"main": "./dist/index.mjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.mts",
 	"files": ["dist"],
 	"scripts": {
 		"build": "tsdown",
